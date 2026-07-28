@@ -6,10 +6,16 @@ int front =-1;
 int main()
 {
     enqueue(10);
+    enqueue(11);
+    enqueue(12);
+    enqueue(13);
     display();
     enqueue(15);
     display();
     enqueue(20);
+    display();
+    DivAdd();
+    printf("After dividing and adding:\n"); //10,20,30,40,50,60 (input)-> 10,40,20,50,30,60(output)
     display();
     peek();
     dequeue();
@@ -94,5 +100,27 @@ void dequeue()
     {
         printf("The dequed element is: %d\n",queue[front]);
         front++;
+    }
+}
+void DivAdd()
+{
+    int n = rear - front + 1;
+    if(n % 2 != 0)
+    {
+        printf("Queue size must be even\n");
+        return;
+    }
+    int half = n / 2;
+    int temp[half];
+    for(int i = 0; i < half; i++)
+    {
+        temp[i] = queue[front + i];
+    }
+    int j = front + half;
+    int k = front;
+    for(int i = 0; i < half; i++)
+    {
+        queue[k++] = temp[i];
+        queue[k++] = queue[j++];
     }
 }
